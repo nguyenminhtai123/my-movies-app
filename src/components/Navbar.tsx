@@ -1,11 +1,13 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Button, FormControl, MenuItem, Select } from '@material-ui/core';
+import { Button, FormControl, MenuItem, Select, Chip } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import WelcomeMessage from './WelcomeMessage';
+import { ProgressContext } from '../contexts/ProgressContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -17,8 +19,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 const Navbar = () => {
+    // styles
     const classes = useStyles();
 
+    // context
+    const { lastTime, status } = useContext(ProgressContext);
+    const { theme } = useContext(ThemeContext);
+
+    // state
     const [position, setPosition] = useState<string>('Full-stack Devoloper');
 
     const [time, setTime] = useState<Date>(() => new Date(Date.now()));
@@ -32,13 +40,14 @@ const Navbar = () => {
     };
 
     return (
-        <AppBar position="static" color="primary">
+        <AppBar position="static" color={theme}>
             <Toolbar>
                 <Box display="flex" justifyContent="space-between" textAlign="center" width={1} py={2}>
                     <Typography variant="h6">My movies</Typography>
 
                     <Box textAlign="center">
                         <WelcomeMessage position={position} />
+                        <Chip label={`Last time working on this project: ${lastTime} - Status: ${status}`} />
 
                         <Box mt={1}>
                             <FormControl>
