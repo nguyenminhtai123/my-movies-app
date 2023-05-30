@@ -1,7 +1,7 @@
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import { Button, FormControl, MenuItem, Select, Chip } from '@material-ui/core';
 import Box from '@mui/material/Box';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
@@ -42,8 +42,8 @@ const Navbar = () => {
     return (
         <AppBar position="static" color={theme}>
             <Toolbar>
-                <Box display="flex" justifyContent="space-between" textAlign="center" width={1} py={2}>
-                    <Typography variant="h6">My movies</Typography>
+                <Box display="flex" justifyContent="space-between" alignItems="center" width={1} py={2}>
+                    <Typography variant="h5">My movies</Typography>
 
                     <Box textAlign="center">
                         <WelcomeMessage position={position} />
