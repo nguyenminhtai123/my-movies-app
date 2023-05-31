@@ -60,7 +60,7 @@ const Movie = () => {
                         clickable
                         color={chipTheme}
                         className={classes.movieChip}
-                        onDelete={deleteMovie.bind(this)}
+                        onDelete={deleteMovie.bind(this, movie.id)}
                     />
                 ))}
             </Box>
